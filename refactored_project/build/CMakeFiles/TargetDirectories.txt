@@ -1,0 +1,13 @@
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/intrinsics_gen.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/omp_gen.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/acc_gen.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/RISCVTargetParserTableGen.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/clang-tablegen-targets.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/code_property_graph.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/compute_graph_tool.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/list_install_components.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/install.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/install/local.dir
+/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build/CMakeFiles/install/strip.dir

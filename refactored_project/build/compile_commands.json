@@ -1,0 +1,74 @@
+[
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/code_property_graph.dir/lib/code_property_graph/CPGAnnotation.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/CPGAnnotation.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/CPGAnnotation.cpp",
+  "output": "CMakeFiles/code_property_graph.dir/lib/code_property_graph/CPGAnnotation.cpp.o"
+},
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/code_property_graph.dir/lib/code_property_graph/CPGBuilder.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/CPGBuilder.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/CPGBuilder.cpp",
+  "output": "CMakeFiles/code_property_graph.dir/lib/code_property_graph/CPGBuilder.cpp.o"
+},
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/code_property_graph.dir/lib/code_property_graph/CPGDataFlow.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/CPGDataFlow.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/CPGDataFlow.cpp",
+  "output": "CMakeFiles/code_property_graph.dir/lib/code_property_graph/CPGDataFlow.cpp.o"
+},
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/code_property_graph.dir/lib/code_property_graph/CPGVisualization.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/CPGVisualization.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/CPGVisualization.cpp",
+  "output": "CMakeFiles/code_property_graph.dir/lib/code_property_graph/CPGVisualization.cpp.o"
+},
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraph.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraph.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraph.cpp",
+  "output": "CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraph.cpp.o"
+},
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraphBuilder.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraphBuilder.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraphBuilder.cpp",
+  "output": "CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraphBuilder.cpp.o"
+},
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraphBuilderExpr.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraphBuilderExpr.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraphBuilderExpr.cpp",
+  "output": "CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraphBuilderExpr.cpp.o"
+},
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraphBuilderNode.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraphBuilderNode.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraphBuilderNode.cpp",
+  "output": "CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraphBuilderNode.cpp.o"
+},
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraphBuilderTrace.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraphBuilderTrace.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraphBuilderTrace.cpp",
+  "output": "CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraphBuilderTrace.cpp.o"
+},
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraphTester.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraphTester.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/ComputeGraphTester.cpp",
+  "output": "CMakeFiles/code_property_graph.dir/lib/code_property_graph/ComputeGraphTester.cpp.o"
+},
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/code_property_graph.dir/lib/code_property_graph/CPGAnalysisTester.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/CPGAnalysisTester.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/lib/code_property_graph/CPGAnalysisTester.cpp",
+  "output": "CMakeFiles/code_property_graph.dir/lib/code_property_graph/CPGAnalysisTester.cpp.o"
+},
+{
+  "directory": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/build",
+  "command": "/usr/bin/c++  -I/usr/lib/llvm-17/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include -I/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/include/code_property_graph -std=c++17   -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -Wall -Wextra -Wno-unused-parameter -o CMakeFiles/compute_graph_tool.dir/ComputeGraphTool.cpp.o -c /mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/ComputeGraphTool.cpp",
+  "file": "/mnt/c/Users/王立敏/Downloads/refactored_project/refactored_project/ComputeGraphTool.cpp",
+  "output": "CMakeFiles/compute_graph_tool.dir/ComputeGraphTool.cpp.o"
+}
+]

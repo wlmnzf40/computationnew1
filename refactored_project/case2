@@ -1,0 +1,214 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025-2025. All rights reserved.
+ * bf16_dot_product_test.cpp - BF16点积向量化测试案例
+ * 
+ * 本文件包含:
+ * 1. 原始标量版本: ggml_vec_dot_bf16
+ * 2. NEON向量化版本: ggml_vec_dot_bf16_neon (目标代码)
+ * 
+ * 期望的计算图结构 (循环体):
+ * ─────────────────────────────────────────────────────────────────
+ *                    [LoopInduction: i]
+ *                           │
+ *              ┌────────────┴────────────┐
+ *              ▼                         ▼
+ *     [ArrayAccess: x[i]]       [ArrayAccess: y[i]]
+ *         bf16 (16-bit)             bf16 (16-bit)
+ *              │                         │
+ *              ▼                         ▼
+ *     [Call: bf16_to_fp32]      [Call: bf16_to_fp32]
+ *         fp32 (32-bit)             fp32 (32-bit)
+ *              │                         │
+ *              └──────────┬──────────────┘
+ *                         ▼
+ *                 [BinaryOp: Mul]
+ *                     fp32
+ *                         │
+ *                         ▼
+ *                 [BinaryOp: Add] ◄──── [Variable: sumf] (LoopCarried)
+ *                   fp64 (reduction)
+ *                         │
+ *                         ▼
+ *                 [Store: sumf]
+ *                         │
+ *                         └──────────────► 回到 [Variable: sumf]
+ * 
+ * NEON 指令映射:
+ * ─────────────────────────────────────────────────────────────────
+ *   原始节点                          →  NEON指令
+ *   ────────────────────────────────────────────────────────────────
+ *   ArrayAccess(x[i])                 →  vld1q_bf16((bfloat16_t*)(x+i))
+ *   ArrayAccess(y[i])                 →  vld1q_bf16((bfloat16_t*)(y+i))
+ *   Call(bf16_to_fp32) × 2            ┐
+ *   BinaryOp(Mul)                     ├→ vbfdotq_f32(acc, vx, vy)
+ *   BinaryOp(Add) + LoopCarried       ┘   (融合为单条指令!)
+ *   Variable(sumf) 水平求和            →  vaddvq_f32(acc)
+ *   累加器初始化                       →  vdupq_n_f32(0.0f)
+ * 
+ * 性能提升:
+ *   - 吞吐量: 8× (每次迭代处理8个元素 vs 1个)
+ *   - 指令融合: 4操作 → 1指令
+ */
+
+#include <cstdint>
+#include <cstdio>
+
+// ============================================
+// 类型定义
+// ============================================
+
+typedef double ggml_float;
+
+struct ggml_bf16_t {
+    uint16_t bits;
+};
+
+#define GGML_RESTRICT __restrict__
+
+// ============================================
+// 辅助函数: BF16 转 FP32
+// ============================================
+
+static inline float ggml_compute_bf16_to_fp32(ggml_bf16_t h) {
+    union {
+        float f;
+        uint32_t i;
+    } u;
+    u.i = (uint32_t)h.bits << 16;
+    return u.f;
+}
+
+#define GGML_BF16_TO_FP32(x) ggml_compute_bf16_to_fp32(x)
+
+// ============================================
+// 原始标量版本
+// ============================================
+
+/*
+ * 这个函数的循环体会被分析并构建为 ComputeGraph:
+ * 
+ * ComputeNode 创建:
+ *   [0] LoopInduction "i"       - loopDepth=1, init=0, step=1
+ *   [1] ArrayAccess "x[i]"      - bf16, array="x"
+ *   [2] ArrayAccess "y[i]"      - bf16, array="y"
+ *   [3] Call "bf16_to_fp32"     - is_type_conversion=true
+ *   [4] Call "bf16_to_fp32"     - is_type_conversion=true
+ *   [5] BinaryOp Mul            - fp32
+ *   [6] Variable "sumf_in"      - is_accumulator=true, loop_carried=true
+ *   [7] BinaryOp Add            - is_reduction=true
+ *   [8] Store "sumf"
+ * 
+ * ComputeEdge 创建:
+ *   DataFlow: 0→1, 0→2         - 索引传递
+ *   DataFlow: 1→3, 2→4         - 数组值传递
+ *   DataFlow: 3→5, 4→5         - 乘法操作数
+ *   DataFlow: 5→7              - 乘积传递
+ *   LoopCarried: 6→7           - 累加器输入 ★
+ *   DataFlow: 7→8              - 结果存储
+ *   LoopCarried: 8→6           - 累加器回边 ★
+ */
+void ggml_vec_dot_bf16(
+    int n, 
+    float * GGML_RESTRICT s, 
+    size_t bs,
+    ggml_bf16_t * GGML_RESTRICT x, 
+    size_t bx,
+    ggml_bf16_t * GGML_RESTRICT y, 
+    size_t by, 
+    int nrc)
+{
+    int i = 0;
+    ggml_float sumf = 0;
+    
+    for (; i < n; ++i) {
+        sumf += (ggml_float)(GGML_BF16_TO_FP32(x[i]) *
+                             GGML_BF16_TO_FP32(y[i]));
+    }
+    
+    *s = sumf;
+}
+
+// ============================================
+// NEON 向量化版本 (目标代码)
+// ============================================
+
+#if defined(__ARM_NEON) && defined(__ARM_FEATURE_BF16)
+#include <arm_neon.h>
+
+/*
+ * 这是从 ComputeGraph 模式匹配后生成的向量化代码
+ * 
+ * 改写后的 ComputeGraph:
+ *   [0] LoopInduction "i"       - step=8 (was 1)
+ *   [1] IntrinsicCall "vld1q_bf16"  - 替换 ArrayAccess
+ *   [2] IntrinsicCall "vld1q_bf16"  - 替换 ArrayAccess
+ *   [3] IntrinsicCall "vbfdotq_f32" - 融合 Call×2 + Mul + Add
+ *   [4] Variable "acc"          - 向量累加器
+ *   [5] IntrinsicCall "vaddvq_f32"  - 水平归约 (循环后)
+ */
+void ggml_vec_dot_bf16_neon(
+    int n, 
+    float * GGML_RESTRICT s, 
+    size_t bs,
+    ggml_bf16_t * GGML_RESTRICT x, 
+    size_t bx,
+    ggml_bf16_t * GGML_RESTRICT y, 
+    size_t by, 
+    int nrc)
+{
+    int i = 0;
+    ggml_float sumf = 0;
+    
+    // 向量化主循环
+    float32x4_t acc = vdupq_n_f32(0.0f);  // 累加器初始化
+    
+    for (; i <= n - 8; i += 8) {
+        // vbfdotq_f32: 一条指令完成 bf16×bf16 + fp32 累加
+        acc = vbfdotq_f32(
+            acc,
+            vld1q_bf16((bfloat16_t *)(x + i)),
+            vld1q_bf16((bfloat16_t *)(y + i))
+        );
+    }
+    
+    // 水平求和
+    sumf += vaddvq_f32(acc);
+    
+    // 标量尾循环
+    for (; i < n; ++i) {
+        sumf += (ggml_float)(GGML_BF16_TO_FP32(x[i]) *
+                             GGML_BF16_TO_FP32(y[i]));
+    }
+    
+    *s = sumf;
+}
+
+#endif
+
+
+// ============================================
+// 测试代码
+// ============================================
+
+int main() {
+    printf("BF16 Dot Product Vectorization Test\n");
+    printf("=====================================\n\n");
+
+    const int N = 16;
+    ggml_bf16_t x[N], y[N];
+
+    // 初始化
+    for (int i = 0; i < N; ++i) {
+        x[i].bits = 0x3f80;  // 1.0 in bf16
+        y[i].bits = 0x4000;  // 2.0 in bf16
+    }
+
+    float result_scalar = 0;
+    float result_neon = 0;
+
+    // 测试标量版本
+    ggml_vec_dot_bf16(N, &result_scalar, 0, x, 0, y, 0, 1);
+    printf("Scalar result: %f\n", result_scalar);
+    
+    return 0;
+}

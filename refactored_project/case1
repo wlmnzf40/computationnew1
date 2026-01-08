@@ -1,0 +1,18 @@
+#include <cmath>
+#include <cstdlib>
+using namespace std;
+
+template<typename T>
+inline T ManhattanDistance(const T* x, const T* y, int f)
+{
+    T d = 0.0;
+    for (int i = 0; i < f; i++) {
+        d += std::abs(x[i] - y[i]);
+    }
+    return d;
+}
+
+int main()
+{
+    return 0;
+}
